@@ -51,6 +51,7 @@ LOCAL_C_INCLUDES += $(local_c_includes)
 LOCAL_SHARED_LIBRARIES += libFreedelityCrypto
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE:= libFreedelitySSL
+LOCAL_LDLIBS := -llog
 include $(BUILD_SHARED_LIBRARY)
 
 ifeq ($(WITH_HOST_DALVIK),true)

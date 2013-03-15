@@ -147,7 +147,7 @@
  * OTHER ENTITY BASED ON INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS OR
  * OTHERWISE.
  */
-
+#include <android/log.h>
 #include <stdio.h>
 #include "ssl_locl.h"
 #include "kssl_lcl.h"
