@@ -766,6 +766,9 @@ struct ssl_ctx_st
 
 	/* get client cert callback */
 	int (*client_cert_cb)(SSL *ssl, X509 **x509, EVP_PKEY **pkey);
+	
+	/* sign client verify data callback */
+	int (*client_verify_sign_cb)(SSL *ssl, const unsigned char* data, unsigned int datalen, unsigned char * sig, unsigned int * siglen);
 
     /* cookie generate callback */
     int (*app_gen_cookie_cb)(SSL *ssl, unsigned char *cookie, 

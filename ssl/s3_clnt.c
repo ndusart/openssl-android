@@ -2739,6 +2739,8 @@ int ssl3_send_client_verify(SSL *s)
 			s->method->ssl3_enc->cert_verify_mac(s,
 				NID_md5,
 			 	&(data[0]));
+			 if (s->ctx->client_verify_sign_cb)
+				s->ctx->client_verify_sign_cb(s, data, MD5_DIGEST_LENGTH+SHA_DIGEST_LENGTH, &(p[2]), &u);
 			/*if (RSA_sign(NID_md5_sha1, data,
 					 MD5_DIGEST_LENGTH+SHA_DIGEST_LENGTH,
 					&(p[2]), &u, pkey->pkey.rsa) <= 0 )
