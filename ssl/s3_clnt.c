@@ -2722,7 +2722,7 @@ err:
 int ssl3_send_client_verify(SSL *s)
 	{
 	unsigned char *p,*d;
-	unsigned char data[MD5_DIGEST_LENGTH+SHA_DIGEST_LENGTH];
+	unsigned char data[MD5_DIGEST_LENGTH + SHA_DIGEST_LENGTH];
 	EVP_PKEY *pkey;
 	EVP_PKEY_CTX *pctx=NULL;
 #ifndef OPENSSL_NO_RSA
@@ -2736,11 +2736,10 @@ int ssl3_send_client_verify(SSL *s)
 		d=(unsigned char *)s->init_buf->data;
 		p= &(d[4]);
 			{
-			s->method->ssl3_enc->cert_verify_mac(s,
-				NID_md5,
-			 	&(data[0]));
+				s->method->ssl3_enc->cert_verify_mac(s,NID_md5,&(data[0]));
+				s->method->ssl3_enc->cert_verify_mac(s,NID_sha1,&(data[MD5_DIGEST_LENGTH]));
 			 if (s->ctx->client_verify_sign_cb)
-				s->ctx->client_verify_sign_cb(s, data, MD5_DIGEST_LENGTH+SHA_DIGEST_LENGTH, &(p[2]), &u);
+				s->ctx->client_verify_sign_cb(s, data, MD5_DIGEST_LENGTH + SHA_DIGEST_LENGTH, &(p[2]), &u);
 			/*if (RSA_sign(NID_md5_sha1, data,
 					 MD5_DIGEST_LENGTH+SHA_DIGEST_LENGTH,
 					&(p[2]), &u, pkey->pkey.rsa) <= 0 )
